@@ -1,0 +1,908 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "说明生产,基地,流通3个溯源的新增,查看接口",
+    "version": "1",
+    "title": "溯源接口"
+  },
+  "host": "dev.cloudchain.cn",
+  "basePath": "/qc/cloudchain/",
+  "tags": [
+    {
+      "name": "PC端",
+      "description": "前后端分离溯源类接口"
+    },
+    {
+      "name": "手机端",
+      "description": "手机端接口"
+    }
+  ],
+  "schemes": [],
+  "consumes": [],
+  "produces": [],
+  "paths": {
+    "/trace/INF_TYPE_getTraceBase": {
+      "post": {
+        "tags": [
+          "PC端"
+        ],
+        "summary": "获取基地信息",
+        "description": "获取基地信息明细",
+        "schemes": [
+          "http"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "请求的参数类型固定,INF_TYPE值为getTraceBase,TOKEN为单独的接口获取,需要登录后调用,所有除了登录外都必须带上次参数TOKEN",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/getTraceBase"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "成功",
+            "schema": {
+              "description": "成功",
+              "$ref": "#/definitions/getTraceBase_resp"
+            }
+          }
+        }
+      }
+    },
+    "/trace/INF_TYPE_getTraceCirculation": {
+      "post": {
+        "tags": [
+          "PC端"
+        ],
+        "summary": "获取流通溯源",
+        "description": "获取流通溯源信息",
+        "schemes": [
+          "http"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "请求参数类型固定,INF_TYPE值为getTraceCirculation,TOKEN为单独接口获取,需要登录后,所有除了登录外都必须带上次参数TOKEN",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/getTraceCirculation"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "成功",
+            "schema": {
+              "type": "object",
+              "format": "",
+              "description": "成功",
+              "title": "200",
+              "properties": {
+                "RESULT_MSG": {
+                  "type": "string",
+                  "description": "响应消息"
+                },
+                "SUCCESS": {
+                  "type": "string",
+                  "description": "请求结果标记"
+                },
+                "BLOCK_LIST": {
+                  "description": "区块信息",
+                  "$ref": "#/definitions/blockinfo"
+                },
+                "RESULT_CODE": {
+                  "type": "string",
+                  "description": "状态码"
+                },
+                "TRACE_CIRCULATION": {
+                  "description": "溯源对象",
+                  "$ref": "#/definitions/getTraceCircu_resp"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/trace/INF_TYPE_getTraceShop": {
+      "post": {
+        "tags": [
+          "PC端"
+        ],
+        "summary": "获取门店信息",
+        "description": "获取门店信息",
+        "schemes": [
+          "http"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "请求的参数类型固定,INF_TYPE值为getTraceShop,TOKEN为单独的接口获取,需要登录后调用,所有除了登录外都必须带上次参数TOKEN",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/getTraceShop"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "成功",
+            "schema": {
+              "type": "object",
+              "format": "",
+              "description": "成功",
+              "title": "200",
+              "properties": {
+                "RESULT_MSG": {
+                  "type": "string",
+                  "description": "响应消息"
+                },
+                "SUCCESS": {
+                  "type": "string",
+                  "description": "响应状态"
+                },
+                "RESULT_DATA": {
+                  "description": "门店对象",
+                  "$ref": "#/definitions/shopinfo"
+                },
+                "RESULT_CODE": {
+                  "type": "string",
+                  "description": "响应编码"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/trace/INF_TYPE_uploadTraceBase": {
+      "post": {
+        "tags": [
+          "PC端"
+        ],
+        "summary": "上传基地溯源",
+        "description": "上传基地溯源信息",
+        "schemes": [
+          "http"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/uploadTraceBase"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "成功",
+            "schema": {
+              "description": "成功",
+              "$ref": "#/definitions/common_success"
+            }
+          }
+        }
+      }
+    },
+    "/trace/INF_TYPE_uploadTraceCirculation": {
+      "post": {
+        "tags": [
+          "PC端"
+        ],
+        "summary": "上传流通溯源",
+        "description": "上传流通溯源接口",
+        "schemes": [
+          "http"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "各个类型对应的格式如下 \"TRACE_CODE_TYPE\":1 \"TRACE_CODE_JSON\":[{\"TRACE_CODE_START\":\"质量码开始号\"},{\"TRACE_CODE_START\":\"质量码结束号\"}]\"\"TRACE_CODE_TYPE\":2\"TRACE_CODE_JSON\":[{\"箱码\":\"质量码,质量码,质量码\"},{\"箱码\":\"质量码,质量码,质量码\"}]\"\"TRACE_CODE_TYPE\":3 \"TRACE_CODE_JSON\":\"质量码,质量码,质量码\"\"TRACE_CODE_TYPE\":4\"TRACE_CODE_JSON\":\"箱码,箱码,箱码\"",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/uploadTraceCirculation"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "处理成功",
+            "schema": {
+              "description": "处理成功",
+              "$ref": "#/definitions/common_success"
+            }
+          }
+        }
+      }
+    },
+    "/trace/INF_TYPE_uploadTraceShop": {
+      "post": {
+        "tags": [
+          "PC端"
+        ],
+        "summary": "上传门店溯源",
+        "description": "上传门店溯源信息",
+        "schemes": [
+          "http"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "请求提内容",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/uploadTraceShop"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "成功",
+            "schema": {
+              "description": "成功",
+              "$ref": "#/definitions/common_success"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "shopinfo": {
+      "type": "object",
+      "properties": {
+        "SHOP_CONTACT_NAME": {
+          "type": "string",
+          "description": "门店联系人"
+        },
+        "SHOP_TEL": {
+          "type": "string",
+          "description": "门店电话"
+        },
+        "ORGANIZE_NAME": {
+          "type": "string",
+          "description": "企业名称"
+        },
+        "CZONE_ID": {
+          "type": "string",
+          "description": "地市区划编码"
+        },
+        "SHOP_SIMPLE_NAME": {
+          "type": "string",
+          "description": "门店简称"
+        },
+        "COORDINATE_TYPE": {
+          "type": "string",
+          "description": "坐标类型"
+        },
+        "SHOP_DESC": {
+          "type": "string",
+          "description": "门店描述"
+        },
+        "SHOP_ID": {
+          "type": "string",
+          "description": "门店ID"
+        },
+        "CZONE_NAME": {
+          "type": "string",
+          "description": "地市名称"
+        },
+        "SHOP_PHOTO_URL": {
+          "type": "string",
+          "description": "门店图片"
+        },
+        "PZONE_ID": {
+          "type": "string",
+          "description": "省份区划编码"
+        },
+        "PZONE_NAME": {
+          "type": "string",
+          "description": "所在省份"
+        },
+        "SHOP_LNG": {
+          "type": "string",
+          "description": "经度"
+        },
+        "SHOP_ADDR": {
+          "type": "string",
+          "description": "门店地址"
+        },
+        "SHOP_LAT": {
+          "type": "string",
+          "description": "维度"
+        },
+        "ZONE_ID": {
+          "type": "string",
+          "description": "区县区划ID"
+        },
+        "CUSTOM_DATA": {
+          "type": "string",
+          "description": "自定义数据"
+        },
+        "ZONE_NAME": {
+          "type": "string",
+          "description": "区县名称"
+        },
+        "SHOP_AREA_CODE": {
+          "type": "string",
+          "description": "所在区划编码"
+        },
+        "SHOP_NAME": {
+          "type": "string",
+          "description": "门店名称"
+        },
+        "SHOP_TYPE": {
+          "type": "string",
+          "description": "门店类型()"
+        },
+        "PARENT_ID": {
+          "type": "string",
+          "description": "所在地市区划编码"
+        }
+      },
+      "description": "门店对象信息"
+    },
+    "uploadTraceShop": {
+      "type": "object",
+      "properties": {
+        "SHOP_CONTACT_NAME": {
+          "type": "string",
+          "description": "门店联系人"
+        },
+        "SHOP_TEL": {
+          "type": "string",
+          "description": "门店电话"
+        },
+        "INF_TYPE": {
+          "type": "string",
+          "description": "类型,固定"
+        },
+        "ORGANIZE_NAME": {
+          "type": "string",
+          "description": "所属企业名称"
+        },
+        "CUSTOM": {
+          "type": "string",
+          "description": "自定义内容"
+        },
+        "SHOP_SIMPLE_NAME": {
+          "type": "string",
+          "description": "门店简称"
+        },
+        "ORGANIZE_CODE": {
+          "type": "string",
+          "description": "门店所属企业信用代码"
+        },
+        "SHOP_DESC": {
+          "type": "string",
+          "description": "门店描述"
+        },
+        "SHOP_PHOTO_URL": {
+          "type": "string",
+          "description": "门店照片(上传图片成功返回的地址)"
+        },
+        "SHOP_ADDR": {
+          "type": "string",
+          "description": "门店地址"
+        },
+        "SHOP_LNG": {
+          "type": "number",
+          "description": "门店经度"
+        },
+        "SHOP_LAT": {
+          "type": "number",
+          "description": "门店维度"
+        },
+        "SHOP_NAME": {
+          "type": "string",
+          "description": "门店名称"
+        },
+        "SHOP_AREA_CODE": {
+          "type": "string",
+          "description": "门店所属区划代码(6位)"
+        },
+        "TOKEN": {
+          "type": "string",
+          "description": "令牌"
+        }
+      },
+      "description": "上传门店溯源"
+    },
+    "common_success": {
+      "type": "object",
+      "properties": {
+        "RESULT_MSG": {
+          "type": "string",
+          "description": "信息提示"
+        },
+        "SUCCESS": {
+          "type": "string",
+          "description": "是否成功"
+        },
+        "RESULT_CODE": {
+          "type": "string",
+          "description": "状态编码"
+        }
+      },
+      "description": "公共响应信息"
+    },
+    "trace_baseinfo": {
+      "type": "object",
+      "properties": {
+        "BASE_ADDR": {
+          "type": "string",
+          "description": "基地地址"
+        },
+        "BASE_LNG": {
+          "type": "number",
+          "description": "基地经度"
+        },
+        "ORGANIZE_NAME": {
+          "type": "string",
+          "description": "企业名称"
+        },
+        "BASE_TEL": {
+          "type": "string",
+          "description": "基地电话"
+        },
+        "CZONE_ID": {
+          "type": "string",
+          "description": "区县编码"
+        },
+        "BASE_ID": {
+          "type": "string",
+          "description": "基地流水号"
+        },
+        "ORGANIZE_CODE": {
+          "type": "string",
+          "description": "企业信用代码"
+        },
+        "COORDINATE_TYPE": {
+          "type": "string",
+          "description": "坐标类型"
+        },
+        "BASE_AREA_CODE": {
+          "type": "string",
+          "description": "基地行政区划代码"
+        },
+        "CZONE_NAME": {
+          "type": "string",
+          "description": "地市"
+        },
+        "BASE_TYPE": {
+          "type": "string",
+          "description": "基地类型"
+        },
+        "PZONE_ID": {
+          "type": "string",
+          "description": "省编码"
+        },
+        "PZONE_NAME": {
+          "type": "string",
+          "description": "所在省"
+        },
+        "BASE_LAT": {
+          "type": "number",
+          "description": "基地维度"
+        },
+        "BASE_DESC": {
+          "type": "string",
+          "description": "基地描述"
+        },
+        "ZONE_ID": {
+          "type": "string",
+          "description": "基地区域id"
+        },
+        "BASE_PHOTO_URL": {
+          "type": "string",
+          "description": "基地照片地址"
+        },
+        "BASE_SIMPLE_NAME": {
+          "type": "string",
+          "description": "基地简称"
+        },
+        "ZONE_NAME": {
+          "type": "string",
+          "description": "区县"
+        },
+        "BASE_CONTACT_NAME": {
+          "type": "string",
+          "description": "基地联系人"
+        },
+        "BASE_NAME": {
+          "type": "string",
+          "description": "基地名称"
+        },
+        "PARENT_ID": {
+          "type": "string",
+          "description": "省编码"
+        }
+      },
+      "description": "基地信息"
+    },
+    "uploadTraceBase": {
+      "type": "object",
+      "properties": {
+        "BASE_LAT": {
+          "type": "number",
+          "description": "基地维度"
+        },
+        "BASE_LNG": {
+          "type": "number",
+          "description": "基地经度"
+        },
+        "BASE_TEL": {
+          "type": "string",
+          "description": "基地电话"
+        },
+        "ORGANIZE_NAME": {
+          "type": "string",
+          "description": "企业名称"
+        },
+        "BASE_DESC": {
+          "type": "string",
+          "description": "基地描述"
+        },
+        "BASE_PHOTO_URL": {
+          "type": "string",
+          "description": "基地照片(上传成功后,返回的地址)"
+        },
+        "INT_TYPE": {
+          "type": "string",
+          "description": "uploadTraceBase"
+        },
+        "BASE_SIMPLE_NAME": {
+          "type": "string",
+          "description": "基地简称"
+        },
+        "BASE_CONTACT_NAME": {
+          "type": "string",
+          "description": "基地联系人"
+        },
+        "ORGANIZE_CODE": {
+          "type": "string",
+          "description": "企业信用编码"
+        },
+        "BASE_NAME": {
+          "type": "string",
+          "description": "基地名称"
+        },
+        "BASE_TYPE": {
+          "type": "string",
+          "description": "基地类型(1:出资,2:合作,3:其他)"
+        },
+        "TOKEN": {
+          "type": "string",
+          "description": "令牌"
+        }
+      },
+      "description": "上传基地溯源请求"
+    },
+    "uploadTraceCirculation": {
+      "type": "object",
+      "properties": {
+        "INF_TYPE": {
+          "type": "string",
+          "description": "请求类型"
+        },
+        "SELL_ORGAN_NAME": {
+          "type": "string",
+          "description": "经销企业名称"
+        },
+        "BATCH_CODE": {
+          "type": "string",
+          "description": "批次码"
+        },
+        "SUPPLY_WAREHOUSE": {
+          "type": "string",
+          "description": "供货仓库"
+        },
+        "SELL_ORGAN_CODE": {
+          "type": "string",
+          "description": "经销企业代码"
+        },
+        "PRODUCT_CODE": {
+          "type": "string",
+          "description": "产品编码"
+        },
+        "LOGISTIC_NAME": {
+          "type": "string",
+          "description": "物流公司"
+        },
+        "SALE_CODE": {
+          "type": "string",
+          "description": "出库单号"
+        },
+        "TRACE_CODE_TYPE": {
+          "type": "string",
+          "description": "质量码类型(1-平台 2-企业 3-进出口)"
+        },
+        "TRACE_CODE_SOURCE": {
+          "type": "string",
+          "description": "质量码来源"
+        },
+        "SUPPLY_ORGAN_CODE": {
+          "type": "string",
+          "description": "供货企业信用代码"
+        },
+        "LOGISTIC_TIME": {
+          "type": "string",
+          "description": "出库时间"
+        },
+        "SELL_WAREHOUSE": {
+          "type": "string",
+          "description": "经销仓库"
+        },
+        "TRACE_CODE_JSON": {
+          "type": "string",
+          "description": "质量码类型的内容"
+        },
+        "SALE_SUM": {
+          "type": "integer",
+          "format": "int32",
+          "description": "指导价"
+        },
+        "TOKEN": {
+          "type": "string",
+          "description": "请求令牌"
+        }
+      },
+      "description": "上传流通溯源请求"
+    },
+    "getTraceBase": {
+      "type": "object",
+      "properties": {
+        "INF_TYPE": {
+          "type": "string",
+          "description": "请求类型(getTraceBase)"
+        },
+        "BASE_ID": {
+          "type": "string",
+          "description": "基地id"
+        },
+        "TOKEN": {
+          "type": "string",
+          "description": "令牌"
+        }
+      },
+      "description": "获取基地信息请求"
+    },
+    "getTraceCirculation": {
+      "type": "object",
+      "properties": {
+        "TRACE_CODE": {
+          "type": "string",
+          "description": "追溯码"
+        },
+        "INT_TYPE": {
+          "type": "string",
+          "description": "请求类型,固定(getTraceCirculation)"
+        },
+        "PRODUCT_CODE": {
+          "type": "string",
+          "description": "产品编码"
+        },
+        "TOKEN": {
+          "type": "string",
+          "description": "令牌"
+        }
+      },
+      "description": "流通溯源明细请求"
+    },
+    "getTraceCircu_resp": {
+      "type": "object",
+      "properties": {
+        "ORGANIZE_NAME": {
+          "type": "string",
+          "description": "企业名称"
+        },
+        "SELL_ORGAN_NAME": {
+          "type": "string",
+          "description": "销售企业名称"
+        },
+        "SUPPLY_WAREHOUSE": {
+          "type": "string",
+          "description": "供货仓库"
+        },
+        "BATCH_CODE": {
+          "type": "string",
+          "description": "批次码"
+        },
+        "PRODUCT_NAME": {
+          "type": "string",
+          "description": "产品名称"
+        },
+        "SELL_ORGAN_CODE": {
+          "type": "string",
+          "description": "经销商编码"
+        },
+        "PRODUCT_CODE": {
+          "type": "string",
+          "description": "产品编码"
+        },
+        "SALE_CODE": {
+          "type": "string",
+          "description": "出库单号"
+        },
+        "TRACE_CODE_SOURCE": {
+          "type": "string",
+          "description": "质量码来源"
+        },
+        "TRACE_CODE_TYPE": {
+          "type": "string",
+          "description": "质量码类型"
+        },
+        "SUPPLY_ORGAN_CODE": {
+          "type": "string",
+          "description": "供货企业代码"
+        },
+        "LOGISTICS_NAME": {
+          "type": "string",
+          "description": "物流名称"
+        },
+        "LOGISTIC_TIME": {
+          "type": "string",
+          "description": "出货时间"
+        },
+        "SELL_WAREHOUSE": {
+          "type": "string",
+          "description": "经销仓库"
+        },
+        "ADDR_COORDINATE": {
+          "type": "string",
+          "description": "地址"
+        },
+        "TRACE_CODE_JSON": {
+          "type": "string",
+          "description": "质量码内容"
+        },
+        "SALE_SUM": {
+          "type": "integer",
+          "format": "int32",
+          "description": "出库数量"
+        }
+      },
+      "description": "获取流通溯源响应"
+    },
+    "getTraceShop": {
+      "type": "object",
+      "properties": {
+        "INF_TYPE": {
+          "type": "string",
+          "description": "getTraceShop"
+        },
+        "SHOP_ID": {
+          "type": "string",
+          "description": "门店id"
+        },
+        "TOKEN": {
+          "type": "string",
+          "description": "令牌"
+        }
+      },
+      "description": "获取门店信息请求"
+    },
+    "blockinfo": {
+      "type": "object",
+      "properties": {
+        "CHANNEL": {
+          "type": "string",
+          "description": "通道/行业链"
+        },
+        "BLOCK_TIME": {
+          "type": "string",
+          "description": "区块时间"
+        },
+        "TIME": {
+          "type": "string",
+          "description": "交易时间"
+        },
+        "PRE_HASH": {
+          "type": "string",
+          "description": "前哈希值"
+        },
+        "BLOCK_NO": {
+          "type": "integer",
+          "format": "int32",
+          "description": "区块号"
+        },
+        "TX_COUNT": {
+          "type": "integer",
+          "format": "int32",
+          "description": "交易数量"
+        },
+        "CURRENT_HASH": {
+          "type": "string",
+          "description": "当前哈希"
+        },
+        "value": {
+          "type": "string",
+          "description": "交易内容"
+        },
+        "tx_id": {
+          "type": "string",
+          "description": "交易id"
+        },
+        "TX_ID": {
+          "type": "string",
+          "description": "交易id"
+        },
+        "BLOCK_HEIGHT": {
+          "type": "integer",
+          "format": "int32",
+          "description": "区块高度"
+        }
+      },
+      "description": "区块信息"
+    },
+    "getTraceBase_resp": {
+      "type": "object",
+      "properties": {
+        "RESULT_MSG": {
+          "type": "string",
+          "description": "响应消息"
+        },
+        "SUCCESS": {
+          "type": "string",
+          "description": "响应状态"
+        },
+        "RESULT_DATA": {
+          "description": "响应内容对象",
+          "$ref": "#/definitions/trace_baseinfo"
+        },
+        "RESULT_CODE": {
+          "type": "string",
+          "description": "状态编码"
+        }
+      },
+      "description": "获取基地信息响应"
+    }
+  }
+}
