@@ -1,0 +1,799 @@
+swagger: '2.0'
+info:
+  description: >-
+    This is a sample server Petstore server.  You can find out more about    
+    Swagger at [http://swagger.io](http://swagger.io) or on [irc.freenode.net,
+    #swagger](http://swagger.io/irc/).      For this sample, you can use the api
+    key `special-key` to test the authorization     filters.
+  version: 1.0.0
+  title: Swagger
+  termsOfService: 'http://swagger.io/terms/'
+  contact:
+    email: apiteam@swagger.io
+  license:
+    name: Apache 2.0
+    url: 'http://www.apache.org/licenses/LICENSE-2.0.html'
+host: petstore.swagger.io
+basePath: /v2
+tags:
+  - name: product
+    description: 产品备案
+  - name: traceMaterial
+    description: 原料溯源管理
+  - name: traceBatch
+    description: 生产溯源管理
+schemes:
+  - http
+paths:
+  /product/INF_TYPE_uploadProduct:
+    post:
+      tags:
+        - product
+      summary: 上传产品备案信息
+      operationId: uploadProduct
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          description: product object that needs to be added to the system
+          required: true
+          schema:
+            $ref: '#/definitions/uploadProduct'
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            $ref: '#/definitions/resultMap'
+
+  /product/INF_TYPE_getProduct:
+    post:
+      tags:
+        - product
+      summary: 获取产品备案信息
+      description: ''
+      operationId: "getProductInfo"
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          description: product object that needs to be added to the system
+          required: true
+          schema:
+            $ref: '#/definitions/getProduct'
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            $ref: '#/definitions/productInfoResponse'
+  /product/INF_TYPE_updateProductInfo:
+    post:
+      tags:
+        - product
+      summary: 修改产品备案信息
+      description: ''
+      operationId: "updateProductInfo"
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          description: product object that needs to be added to the system
+          required: true
+          schema:
+            $ref: '#/definitions/updateProduct'
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            $ref: '#/definitions/resultMap'
+  /trace/INF_TYPE_uploadTraceMaterial:
+    post:
+      tags:
+        - traceMaterial
+      summary: 上传原料溯源信息
+      description: ''
+      operationId: "uploadTraceMaterial"
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          description: product object that needs to be added to the system
+          required: true
+          schema:
+            $ref: '#/definitions/uploadTraceMaterial'
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            $ref: '#/definitions/resultMap'
+  /trace/INF_TYPE_getTraceMaterial:
+    post:
+      tags:
+        - traceMaterial
+      summary: 获取原料溯源信息
+      description: ''
+      operationId: "getTraceMaterial"
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          description: product object that needs to be added to the system
+          required: true
+          schema:
+            $ref: '#/definitions/getTraceMaterial' 
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            $ref: '#/definitions/materialResponse'
+  /product/INF_TYPE_uploadTraceBatch:
+    post:
+      tags:
+        - traceBatch
+      summary: 上传生产溯源信息
+      operationId: uploadTraceBatch
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          description: product object that needs to be added to the system
+          required: true
+          schema:
+            $ref: '#/definitions/uploadTraceBatch'
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            $ref: '#/definitions/resultMap'
+  /product/INF_TYPE_getTraceBatch:
+    post:
+      tags:
+        - traceBatch
+      summary: 获取生产溯源信息
+      operationId: getTraceBatch
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          description: product object that needs to be added to the system
+          required: true
+          schema:
+            $ref: '#/definitions/getTraceBatch'
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            $ref: '#/definitions/traceBatchResponse'
+definitions:
+  uploadProduct:
+    type: object
+    required:
+      - INF_TYPE
+      - TOKEN
+      - PRODUCT_CODE
+      - PRODUCT_NAME
+      - ORGANIZE_ITEM_ID
+      - PRODUCT_TYPE
+      - ORGANIZE_CODE
+      - ORGANIZE_NAME
+      - PRODUCT_BRAND
+      - PRODUCT_PHOTO_URL
+      - PRODUCT_STATUS
+      - USER_ID
+      - UPDATE_TIME
+      - CREATE_TIME
+      - CATEGORY_CODE
+      - TEST_TYPE
+    properties:
+      INF_TYPE:
+        description: 接口类型，固定值“uploadProductInfo”
+        type: string
+      TOKEN:
+        description: token
+        type: string
+      PRODUCT_CODE:
+        description: 产品条码
+        type: string
+      PRODUCT_NAME:
+        description: 产品名称
+        type: string
+      ORGANIZE_ITEM_ID:
+        description: 企业商品编码
+        type: string
+      PRODUCT_TYPE:
+        description: 产品类型
+        type: string  
+      ORGANIZE_CODE:
+        description: 企业信用代码
+        type: string
+      ORGANIZE_NAME:
+        description: 企业名称
+        type: string
+      PRODUCT_BRAND:
+        description: 产品品牌
+        type: string
+      PRODUCT_PHOTO_URL:
+        description: 产品图片地址
+        type: string
+      PRODUCT_STATUS:
+        description: 产品状态
+        type: string
+      USER_ID:
+        description: 用户id
+        type: string  
+      UPDATE_TIME:
+        description: 更新时间
+        type: string
+      CREATE_TIME:
+        description: 创建时间
+        type: string
+      CATEGORY_CODE:
+        description: 品类编码
+        type: string
+      TEST_TYPE:
+        description: 检测类型（00:批批检 01：混合检 02：第三方检）
+        type: string
+  getProduct:
+    type: object
+    required:
+      - INF_TYPE
+      - TOKEN
+    properties:
+      INF_TYPE:
+        description: 接口类型，固定值“getProductInfo”
+        type: string
+      PRODUCT_CODE:
+        description: 产品条码
+        type: string
+      TOKEN:
+        description: token
+        type: string
+        
+  updateProduct:
+    type: object
+    required:
+      - INF_TYPE
+      - TOKEN
+    properties:
+      INF_TYPE:
+        description: 接口类型，固定值“updateProductInfo”
+        type: string
+      TOKEN:
+        description: token
+        type: string
+      PRODUCT_CODE:
+        description: 产品条码
+        type: string
+      PRODUCT_NAME:
+        description: 产品名称
+        type: string
+      ORGANIZE_ITEM_ID:
+        description: 企业商品编码
+        type: string
+      PRODUCT_TYPE:
+        description: 产品类型
+        type: string  
+      ORGANIZE_CODE:
+        description: 企业信用代码
+        type: string
+      ORGANIZE_NAME:
+        description: 企业名称
+        type: string
+      PRODUCT_BRAND:
+        description: 产品品牌
+        type: string
+      PRODUCT_PHOTO_URL:
+        description: 产品图片地址
+        type: string
+      PRODUCT_STATUS:
+        description: 产品状态
+        type: string
+      USER_ID:
+        description: 用户id
+        type: string  
+      UPDATE_TIME:
+        description: 更新时间
+        type: string
+      CREATE_TIME:
+        description: 创建时间
+        type: string
+      CATEGORY_CODE:
+        description: 品类编码
+        type: string
+      TEST_TYPE:
+        description: 检测类型（00:批批检 01：混合检 02：第三方检）
+        type: string
+  uploadTraceMaterial:
+    type: object
+    required:
+      - INF_TYPE
+      - TOKEN
+      - MATERIAL_BATCH
+      - MATERIAL_NAME
+      - ORGAN_NAME
+      - ORGANIZE_CODE
+      - PRODUCT_CODE
+      - BATCH_CODE
+      - UPDATE_TIME
+      - MATERIAL_PHOTO_URL
+    properties:
+      INF_TYPE:
+        description: 接口类型，固定值“uploadTraceMaterial”
+        type: string
+      TOKEN:
+        description: token
+        type: string
+      PRODUCT_CODE:
+        description: 产品编码
+        type: string
+      MATERIAL_BATCH:
+        description: 原料批次
+        type: string
+      MATERIAL_NAME:
+        description: 原料名称
+        type: string
+      ORGAN_NAME:
+        description: 供货单位名称
+        type: string
+      ORGANIZE_CODE:
+        description: 生产企业信用代码
+        type: string  
+      BATCH_CODE:
+        description: 生产批次
+        type: string
+      UPDATE_TIME:
+        description: 更新时间
+        type: string
+      MATERIAL_PHOTO_URL:
+        description: 原料图片地址
+        type: string
+  getTraceMaterial:
+    type: object
+    required:
+      - INF_TYPE
+      - TOKEN
+      - PRODUCT_CODE
+      - MATERIAL_BATCH
+    properties:
+      INF_TYPE:
+        description: 接口类型，固定值“getTraceMaterial”
+        type: string
+      PRODUCT_CODE:
+        description: 产品条码
+        type: string
+      MATERIAL_BATCH:
+        description: 原料批次
+        type: string
+      TOKEN:
+        description: token
+        type: string
+  uploadTraceBatch:
+    type: object
+    required:
+      - INF_TYPE
+      - TOKEN
+      - BATCH_CODE
+      - ITEM_NAME
+      - PRODUCT_CODE
+      - ORGANIZE_CODE
+      - ORGANIZE_NAME
+      - PROCESS_DATE
+      - UPDATE_TIME
+    properties:
+      INF_TYPE:
+        description: 接口类型，固定值“uploadTraceBatch”
+        type: string
+      TOKEN:
+        description: token
+        type: string
+      BATCH_CODE:
+        description: 生产批次
+        type: string
+      ITEM_NAME:
+        description: 产品名称
+        type: string
+      PRODUCT_CODE:
+        description: 产品条码
+        type: string
+      ORGANIZE_CODE:
+        description: 企业信用代码
+        type: string
+      ORGANIZE_NAME:
+        description: 企业名称
+        type: string
+      RELATION_BATCH:
+        description: 关联批次
+        type: string
+      PROCESS_TYPE:
+        description: 生产工序类型
+        type: string
+      PROCESS_JSON:
+        description: 生产工序信息
+        type: string
+      PROCESS_DATE:
+        description: 生产工序日期
+        type: string  
+      TRACE_CODE_START:
+        description: 质量码开始号
+        type: string
+      TRACE_CODE_END:
+        description: 质量码结束号
+        type: string
+      UPDATE_TIME:
+        description: 信息更新日期
+        type: string
+      SECRETKEY:
+        description: 密钥
+        type: string
+      KEY_VERSION:
+        description: 密钥版本
+        type: string
+      BATCH_STATUS:
+        description: 上链状态
+        type: string
+      TRACE_CODE_TYPE:
+        description: 质量码类型(1-平台码 2-企业箱码 3-企业质量码)
+        type: string
+      TRACE_CODE_JSON:
+        description: 质量码串
+        type: string
+      TEST_RESULT:
+        description: 检测结果
+        type: string
+      TEST_URL:
+        description: 检测图片地址
+        type: string
+      TRACE_CODE_SOURCE:
+        description: 质量码来源
+        type: string
+      MEMBER_ID:
+        description: 工序人员id
+        type: string
+  getTraceBatch:
+    type: object
+    required:
+      - INF_TYPE
+      - TOKEN
+    properties:
+      INF_TYPE:
+        description: 接口类型，固定值“getTraceBatch”
+        type: string
+      TOKEN:
+        description: token
+        type: string
+      PRODUCT_CODE:
+        description: 产品条码
+        type: string
+      ORGANIZE_CODE:
+        description: 企业信用代码
+        type: string
+      BAR_CODE:
+        description: 质量码开始号
+        type: string
+      TRACE_CODE_TYPE:
+        description: 质量码类型
+        type: string
+  resultMap:
+    type: object
+    properties:
+      RESULT_CODE: 
+        description: 返回状态码（0000-处理成功 0003-认证信息校验失败 0004-接口类型校验失败 9999-未知错误）
+        type: string
+      SUCCESS:
+        description: 是否成功（true-是；false-否）
+        type: string
+      RESULT_MSG:
+        description: 返回msg
+        type: string
+  productInfoResponse:
+    type: object
+    properties:
+      RESULT_CODE: 
+        description: 返回状态码（0000-处理成功 0003-认证信息校验失败 0004-接口类型校验失败 9999-未知错误）
+        type: string
+      SUCCESS:
+        description: 是否成功（true-是；false-否）
+        type: string
+      RESULT_MSG:
+        description: 返回msg
+        type: string
+      PRODUCT_INFO:
+        $ref: '#/definitions/productInfo'
+      BLOCK_LIST:
+        $ref: '#/definitions/blockList'
+  productInfo:
+    type: object
+    properties:
+      AUTH_DATE:
+        description: 产品备案时间
+        type: string
+      STANDARD_PHOTO_URL:
+        description: 产品标准图片
+        type: string
+      PRODUCT_TYPE_NAME:
+        description: 产品类型名称
+        type: string
+      ORGANIZE_ITEM_ID:
+        description: 企业商品编码
+        type: string
+      PRODUCT_CERT:
+        description: 产品认证
+        type: string
+      ORGANIZE_CODE:
+        description: 企业信用代码
+        type: string
+      PRODUCT_CODE:
+        description: 产品条码
+        type: string
+      PRODUCT_RATING:
+        description: 评定等级
+        type: string
+      PRODUCT_CHARACTER:
+        description: 产品特性图片地址
+        type: string  
+      CATEGORY_NAME:
+        description: 产品类别名称
+        type: string
+      ORGANIZE_NAME:
+        description: 企业名称
+        type: string
+      TEST_TYPE:
+        description: 检测类型（00:批批检 01：混合检 02：第三方检）
+        type: string
+      CATEGORY_CODE:
+        description: 产品类别编码
+        type: string  
+      STANDARD_DESC:
+        description: 标准说明
+        type: string
+      PRODUCT_FEATURES:
+        description: 产品特点
+        type: string
+      PRODUCT_PHOTO_URL:
+        description: 产品图片地址
+        type: string
+      PRODUCT_NAME:
+        description: 产品名称
+        type: string
+      PRODUCT_PATENT:
+        description: 产品专利
+        type: string  
+      PRODUCT_SPEC:
+        description: 产品型号
+        type: string
+      PRODUCT_TYPE:
+        description: 产品类型
+        type: string
+      PRODUCT_BRAND:
+        description: 产品品牌
+        type: string
+      PRODUCT_PRICE:
+        description: 指导价格
+        type: string  
+      PRODUCT_STANDARD:
+        description: 执行标准
+        type: string
+      INSTRUCTIONS_USE:
+        description: 使用说明
+        type: string
+  materialResponse:
+    type: object
+    properties:
+      RESULT_CODE: 
+        description: 返回状态码（0000-处理成功 0003-认证信息校验失败 0004-接口类型校验失败 9999-未知错误）
+        type: string
+      SUCCESS:
+        description: 是否成功（true-是；false-否）
+        type: string
+      RESULT_MSG:
+        description: 返回msg
+        type: string
+      PRODUCT_INFO:
+        $ref: '#/definitions/material'
+      BLOCK_LIST:
+        $ref: '#/definitions/blockList'
+  material:
+    type: object
+    properties:
+      ORGANIZE_NAME:
+        description: 企业名称
+        type: string
+      RELATION_TEST_CODE:
+        description: 关联的检测报告编码
+        type: string
+      MATERIAL_BATCH:
+        description: 原料批次
+        type: string
+      BATCH_CODE:
+        description: 生产批次
+        type: string
+      ORGANIZE_CODE:
+        description: 企业信用代码
+        type: string
+      MATERIAL_NAME:
+        description: 原料名称
+        type: string
+      PRODUCT_NAME:
+        description: 产品名称
+        type: string
+      RELATION_TEST_BATCH:
+        description: 关联的检测批次
+        type: string  
+      ORGAN_NAME:
+        description: 供货单位名称
+        type: string
+      PRODUCT_CODE:
+        description: 产品编码
+        type: string
+  traceBatchResponse:
+    type: object
+    properties:
+      RESULT_CODE: 
+        description: 返回状态码（0000-处理成功 0003-认证信息校验失败 0004-接口类型校验失败 9999-未知错误）
+        type: string
+      SUCCESS:
+        description: 是否成功（true-是；false-否）
+        type: string
+      RESULT_MSG:
+        description: 返回msg
+        type: string
+      TRACE_MATERIAL:
+        $ref: '#/definitions/traceBatch'
+      BLOCK_LIST:
+        $ref: '#/definitions/blockList'
+  traceBatch:
+    type: object
+    properties:
+      MEMBER_NAME: 
+        description: 生产工人名称
+        type: string
+      MEMBER_DESC: 
+        description: 生产工人介绍
+        type: string
+      ORGANIZE_CODE:
+        description: 企业信用代码
+        type: string
+      MEMBER_ID: 
+        description: 生产工人id
+        type: string
+      MEMBER_PHOTO_URL: 
+        description: 生产工人图片地址
+        type: string
+      MEMBER_CODE:
+        description: 企业内部员工编号
+        type: string
+      PRODUCT_CODE:
+        description: 产品编码
+        type: string
+      ITEM_NAME:
+        description: 产品名称
+        type: string
+      PRODUCT_SPEC:
+        description: 产品型号
+        type: string
+      PRODUCT_BRAND:
+        description: 产品品牌
+        type: string
+      PROCESS_DATE:
+        description: 生产日期
+        type: string
+      RELATION_TEST_CODE:
+        description: 关联的检测报告编码
+        type: string
+      BATCH_CODE:
+        description: 生产批次
+        type: string
+      TRACE_CODE_SOURCE:
+        description: 质量码来源（1：平台；2：企业；3：进出口）
+        type: string
+      TRACE_CODE_TYPE:
+        description: 质量码类型（1：连续质量码，2：箱码质量码，3：断续质量码，4：箱码）
+        type: string
+      TRACE_CODE_START:
+        description: 质量码开始号
+        type: string
+      TRACE_CODE_END:
+        description: 质量码结束号
+        type: string  
+      SECRETKEY:
+        description: 密钥
+        type: string
+      SERVICE_TEL:
+        description: 联系电话
+        type: string
+      RELATION_TEST_BATCH:
+        description: 关联的检测报告批次
+        type: string
+      PROCESS_JSON:
+        $ref: '#/definitions/process_json'
+      MATERIAL_BATCH:
+        $ref: '#/definitions/material_batch'
+  process_json:
+    type: object
+    properties:
+      PHOTO_URL:
+        description: 工序图片
+        type: string
+      PROCESS_NAME:
+        description: 工序名称
+        type: string
+      PROCESS_DATE:
+        description: 工序日期
+        type: string
+      PROCESS_ORDER:
+        description: 工序号
+        type: string
+      PROCESS_DESC:
+        description: 工序名称
+        type: string
+  material_batch:
+    type: object
+    properties:
+      MATERIAL_BATCH:
+        description: 原料批次
+        type: string
+      PRODUCT_CODE:
+        description: 产品编码
+        type: string
+  blockList:
+    type: object
+    properties:
+      BLOCK_HEIGHT:
+        description: 区块高度
+        type: integer
+      BLOCK_TIME:
+        description: 区块生成时间
+        type: string
+      CHANNEL:
+        description: 所属链码
+        type: string
+      BLOCK_NO:
+        description: 区块号
+        type: string
+      TIME:
+        description: 交易时间
+        type: string
+      tx_id:
+        description: 交易哈希
+        type: string
+      TX_COUNT:
+        description: 交易笔数
+        type: integer
+      value:
+        description: 交易值
+        type: string
+      PRE_HASH:
+        description: 前一区块哈希值
+        type: string  
+      CURRENT_HASH:
+        description: 当前区块哈希值
+        type: string
+      timestamp:
+        description: 交易时间戳
+        type: string
+      TX_ID:
+        description: 交易哈希值
+        type: string
+externalDocs:
+  description: Find out more about Swagger
+  url: 'http://swagger.io'
