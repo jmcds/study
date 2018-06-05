@@ -16,6 +16,8 @@ info:
 host: petstore.swagger.io
 basePath: /v2
 tags:
+  - name: user
+    description: 用户
   - name: product
     description: 产品备案
   - name: traceMaterial
@@ -25,6 +27,28 @@ tags:
 schemes:
   - http
 paths:
+  /user/INF_TYPE_getToken:
+    post:
+      tags:
+        - user
+      summary: 获取认证信息
+      operationId: getToken
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          description: product object that needs to be added to the system
+          required: true
+          schema:
+            $ref: '#/definitions/getToken'
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            $ref: '#/definitions/getTokenresultMap'
   /product/INF_TYPE_uploadProduct:
     post:
       tags:
@@ -185,6 +209,22 @@ paths:
           schema:
             $ref: '#/definitions/traceBatchResponse'
 definitions:
+  getToken:
+    type: object
+    required:
+      - INF_TYPE
+      - PHONE
+      - PASSWORD
+    properties:
+      INF_TYPE:
+        description: 接口类型，固定值“getToken”
+        type: string
+      PHONE:
+        description: 登录手机号
+        type: string
+      PASSWORD:
+        description: MD5加密后的密码
+        type: string
   uploadProduct:
     type: object
     required:
@@ -504,6 +544,21 @@ definitions:
         type: string
       RESULT_MSG:
         description: 返回msg
+        type: string
+  getTokenresultMap:
+    type: object
+    properties:
+      RESULT_CODE: 
+        description: 返回状态码（0000-处理成功 0003-认证信息校验失败 0004-接口类型校验失败 9999-未知错误）
+        type: string
+      SUCCESS:
+        description: 是否成功（true-是；false-否）
+        type: string
+      RESULT_MSG:
+        description: 返回msg
+        type: string
+      TOKEN:
+        description: 认证信息
         type: string
   productInfoResponse:
     type: object
