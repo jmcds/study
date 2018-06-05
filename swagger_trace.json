@@ -41,7 +41,7 @@
           {
             "in": "body",
             "name": "body",
-            "description": "请求的参数类型固定,INF_TYPE值为getTraceBase,TOKEN为单独的接口获取,需要登录后调用,所有除了登录外都必须带上次参数TOKEN",
+            "description": "请求的参数类型固定,INF_TYPE值为getTraceBase,TOKEN为单独的接口获取,需要登录后调用,所有除了登录外都必须带上次参数TOKEN;",
             "required": true,
             "schema": {
               "$ref": "#/definitions/getTraceBase"
@@ -402,7 +402,7 @@
         },
         "INF_TYPE": {
           "type": "string",
-          "description": "类型,固定"
+          "description": "类型,固定(uploadTraceShop)"
         },
         "ORGANIZE_NAME": {
           "type": "string",
@@ -464,14 +464,14 @@
         },
         "SUCCESS": {
           "type": "string",
-          "description": "是否成功"
+          "description": "是否成功, true 成功,false 失败"
         },
         "RESULT_CODE": {
           "type": "string",
           "description": "状态编码"
         }
       },
-      "description": "公共响应信息"
+      "description": "公共响应信息;SUCCESS true成功,false 失败,RESULT_MSG 响应的信息,状态码0000 成功,0001 请求参数错误,0002 json 个数错误,0003 认证信息错误,0004 接口类型错误,0005 上链失败,0006 用户不存在,0007 密码错误,0008 上链异常,0009 发送验证码失败,0010 验证码错误,0011 验证码失效,0012 查询信息不存在,0100 非空校验错误,0101 正则验证错误,0102 字典值验证错误,0103 范围校验错误,0104 长度校验失败,0105 专项校验错误"
     },
     "trace_baseinfo": {
       "type": "object",
@@ -565,7 +565,7 @@
           "description": "省编码"
         }
       },
-      "description": "基地信息"
+      "description": "基地信息,SUCCESS true成功,false 失败,RESULT_MSG 响应的信息,状态码0000 成功,0001 请求参数错误,0002 json 个数错误,0003 认证信息错误,0004 接口类型错误,0005 上链失败,0006 用户不存在,0007 密码错误,0008 上链异常,0009 发送验证码失败,0010 验证码错误,0011 验证码失效,0012 查询信息不存在,0100 非空校验错误,0101 正则验证错误,0102 字典值验证错误,0103 范围校验错误,0104 长度校验失败,0105 专项校验错误"
     },
     "uploadTraceBase": {
       "type": "object",
@@ -630,7 +630,7 @@
       "properties": {
         "INF_TYPE": {
           "type": "string",
-          "description": "请求类型"
+          "description": "请求类型,固定值(uploadTraceCirculation)"
         },
         "SELL_ORGAN_NAME": {
           "type": "string",
@@ -701,7 +701,7 @@
       "properties": {
         "INF_TYPE": {
           "type": "string",
-          "description": "请求类型(getTraceBase)"
+          "description": "请求类型,固定值(getTraceBase)"
         },
         "BASE_ID": {
           "type": "string",
@@ -712,7 +712,7 @@
           "description": "令牌"
         }
       },
-      "description": "获取基地信息请求"
+      "description": "获取基地信息请求,SUCCESS true成功,false 失败,RESULT_MSG 响应的信息,状态码0000 成功,0001 请求参数错误,0002 json 个数错误,0003 认证信息错误,0004 接口类型错误,0005 上链失败,0006 用户不存在,0007 密码错误,0008 上链异常,0009 发送验证码失败,0010 验证码错误,0011 验证码失效,0012 查询信息不存在,0100 非空校验错误,0101 正则验证错误,0102 字典值验证错误,0103 范围校验错误,0104 长度校验失败,0105 专项校验错误"
     },
     "getTraceCirculation": {
       "type": "object",
@@ -734,7 +734,7 @@
           "description": "令牌"
         }
       },
-      "description": "流通溯源明细请求"
+      "description": "流通溯源明细请求,SUCCESS true成功,false 失败,RESULT_MSG 响应的信息,状态码0000 成功,0001 请求参数错误,0002 json 个数错误,0003 认证信息错误,0004 接口类型错误,0005 上链失败,0006 用户不存在,0007 密码错误,0008 上链异常,0009 发送验证码失败,0010 验证码错误,0011 验证码失效,0012 查询信息不存在,0100 非空校验错误,0101 正则验证错误,0102 字典值验证错误,0103 范围校验错误,0104 长度校验失败,0105 专项校验错误"
     },
     "getTraceCircu_resp": {
       "type": "object",
@@ -809,14 +809,14 @@
           "description": "出库数量"
         }
       },
-      "description": "获取流通溯源响应"
+      "description": "获取流通溯源响应,SUCCESS true成功,false 失败,RESULT_MSG 响应的信息,状态码0000 成功,0001 请求参数错误,0002 json 个数错误,0003 认证信息错误,0004 接口类型错误,0005 上链失败,0006 用户不存在,0007 密码错误,0008 上链异常,0009 发送验证码失败,0010 验证码错误,0011 验证码失效,0012 查询信息不存在,0100 非空校验错误,0101 正则验证错误,0102 字典值验证错误,0103 范围校验错误,0104 长度校验失败,0105 专项校验错误"
     },
     "getTraceShop": {
       "type": "object",
       "properties": {
         "INF_TYPE": {
           "type": "string",
-          "description": "getTraceShop"
+          "description": "请求类型,固定值,getTraceShop"
         },
         "SHOP_ID": {
           "type": "string",
@@ -827,7 +827,7 @@
           "description": "令牌"
         }
       },
-      "description": "获取门店信息请求"
+      "description": "获取门店信息请求,SUCCESS true成功,false 失败,RESULT_MSG 响应的信息,状态码0000 成功,0001 请求参数错误,0002 json 个数错误,0003 认证信息错误,0004 接口类型错误,0005 上链失败,0006 用户不存在,0007 密码错误,0008 上链异常,0009 发送验证码失败,0010 验证码错误,0011 验证码失效,0012 查询信息不存在,0100 非空校验错误,0101 正则验证错误,0102 字典值验证错误,0103 范围校验错误,0104 长度校验失败,0105 专项校验错误"
     },
     "blockinfo": {
       "type": "object",
@@ -891,7 +891,7 @@
         },
         "SUCCESS": {
           "type": "string",
-          "description": "响应状态"
+          "description": "响应状态, true 成功,false 失败"
         },
         "RESULT_DATA": {
           "description": "响应内容对象",
@@ -902,7 +902,7 @@
           "description": "状态编码"
         }
       },
-      "description": "获取基地信息响应"
+      "description": "获取基地信息响应,SUCCESS true成功,false 失败,RESULT_MSG 响应的信息,状态码0000 成功,0001 请求参数错误,0002 json 个数错误,0003 认证信息错误,0004 接口类型错误,0005 上链失败,0006 用户不存在,0007 密码错误,0008 上链异常,0009 发送验证码失败,0010 验证码错误,0011 验证码失效,0012 查询信息不存在,0100 非空校验错误,0101 正则验证错误,0102 字典值验证错误,0103 范围校验错误,0104 长度校验失败,0105 专项校验错误"
     }
   }
 }
