@@ -16,3 +16,19 @@ subject_type | string  |   |  题目类型;0 考题; 1 调查; 2 投票
 group_type | string  |   |  业务类型：1：官方，2：企业，3：政府
 create_user | string  |   |  userid/用户ID
 rows | int  |   |  行数
+
+JavaScript 实例
+```
+var param={
+		"cur_page":"1",
+		"token":"201801260933000000006B9E8FF94DEEEC54",
+		"quest_id":9,
+		"subject_id":0,
+		"subject_type":"0",
+		"group_type":"1",
+		"create_user":"",
+		"rows":10
+	};
+  ```
+  
+  ### 返回结果
