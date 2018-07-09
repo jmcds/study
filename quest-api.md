@@ -32,3 +32,32 @@ var param={
   ```
   
   ### 返回结果
+```
+{
+	"page": "1",
+	"SUCCESS": "true",
+	"RESULT_CODE": "0000",
+	"RESULT_MSG": "获取成功",
+	"rows": [{
+		"QUEST_ID": 9,
+		"GROUP_TYPE": "1",
+		"SUBJECT_NAME": "第一个",
+		"SUBJECT_TYPE": "0",
+		"SUBJECT_ID": 1,
+		"SUBJECT_NOTE": "测试下",
+		"SEQ": 1
+	},
+	{
+		"QUEST_ID": 9,
+		"IMG_URL": "",
+		"GROUP_TYPE": "1",
+		"SUBJECT_NAME": "第二个",
+		"SUBJECT_TYPE": "0",
+		"SUBJECT_ID": 2,
+		"SUBJECT_NOTE": "测试下",
+		"SEQ": 1
+	}],
+	"total": 1,
+	"records": 2
+}
+```
