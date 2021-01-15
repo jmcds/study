@@ -1,6 +1,7 @@
 学习资源
 
-[MongoDB](https://docs.mongodb.com/manual/)
+[MongoDB manual](https://docs.mongodb.com/manual/)
+[MongoDB Java driver](https://mongodb.github.io/mongo-java-driver/4.2/driver/getting-started/quick-start/)
 
 [runoob](https://www.runoob.com/mongodb/mongodb-dropdatabase.html)
 
